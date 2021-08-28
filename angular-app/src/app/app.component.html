@@ -1,0 +1,30 @@
+<!-- Body Container -->
+<div class="container-fluid full-width m-0 p-0">
+    <!-- Central Nav Bar -->
+    <nav [@navAnimationState]="stateName" class="navbar sticky-top navbar-expand-lg navbar-dark bg-ocean">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">
+                <img src="/assets/images/logo.ico" alt="" routerLink="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#about">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="Blog-page">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <button (click)="toggle()">Toggle PopOver</button>
+    <router-outlet></router-outlet>
+
+</div>

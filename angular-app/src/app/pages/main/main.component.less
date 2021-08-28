@@ -1,0 +1,47 @@
+@desktop-big:   ~"only screen and (min-width: 1201px)";
+@desktop-normal:    ~"only screen and (min-width: 1025px) and (max-width: 1200px)";
+@laptop:     ~"only screen and (min-width: 769px) and (max-width: 1024px)";
+@tablet:     ~"only screen and (min-width: 481px) and (max-width: 768px)";
+@phone:     ~"only screen and (min-width: 320px) and (max-width: 480px)";
+.cyan{
+    color:  darkcyan;
+}
+.big-title{
+    font-size: 4em;
+    color: white;
+}
+.me-img{
+    width: 30vh;
+}
+.btn-outline-primary{
+    border: 2px solid darkcyan;
+    color: cyan;
+}
+.btn-outline-primary:hover{
+    background-color: darkcyan;
+}
+@media @phone {
+    .big-title{
+        font-size: 4em;
+    }
+}
+@media @tablet {
+    .big-title{
+        font-size: 6em;
+    }
+}
+@media @laptop {
+    .big-title{
+        font-size: 8em;
+    }
+}
+@media @desktop-normal {
+    .big-title{
+        font-size: 10em;
+    }
+}
+@media @desktop-big {
+    .big-title{
+        font-size: 12em;
+    }
+}
