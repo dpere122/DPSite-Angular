@@ -1,5 +1,5 @@
 <!-- Body Container -->
-<div class="container-fluid full-width m-0 p-0">
+<div (scroll)="onScrollEvent()" class="container-fluid full-width m-0 p-0">
     <!-- Central Nav Bar -->
     <nav [@navAnimationState]="stateName" class="navbar sticky-top navbar-expand-lg navbar-dark bg-ocean">
         <div class="container-fluid">
@@ -24,7 +24,6 @@
             </div>
         </div>
     </nav>
-    <button (click)="toggle()">Toggle PopOver</button>
     <router-outlet></router-outlet>
 
 </div>
