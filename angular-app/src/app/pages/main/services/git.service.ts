@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs'
-import { GitProjComponentComponent } from '../git-proj-component/git-proj-component.component';
 import { repo } from '../git-repo';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 

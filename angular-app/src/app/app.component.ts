@@ -14,18 +14,22 @@ import{
   animations:[
     trigger('navAnimationState',[
       state('max',style({
-        transform: 'scaleY(1.2)',
+        height: '85px',
+        fontSize: '1.5em',
+        opacity: 1
       })),
       state('min',style({
-        transform: 'scaleY(1)',
+        height: '70px',
+        fontSize: '1.2em',
+        opacity: 0.7
       })),
-      transition('max => min', animate('600ms ease-out')),
-      transition('min => max', animate('1000ms ease-in'))
+      transition('max => min', animate('100ms ease-out')),
+      transition('min => max', animate('100ms ease-in'))
     ])
   ]
 })
 export class AppComponent {
-  show = false;
+  show = true;
   constructor (){}
 
   get stateName(){
@@ -33,6 +37,10 @@ export class AppComponent {
   }
   @HostListener('window:scroll', ['$event'])
   onScrollEvent(){
-    console.log("Scrolled");
+    if(window.scrollY <= 200){
+      this.show = true;
+    } else if(window.scrollY > 200){
+      this.show = false;
+    }
   }
 }
