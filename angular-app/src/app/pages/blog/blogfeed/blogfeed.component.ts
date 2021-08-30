@@ -8,6 +8,7 @@ import { post } from '../post';
   templateUrl: './blogfeed.component.html',
   styleUrls: ['./blogfeed.component.less']
 })
+
 export class BlogfeedComponent implements OnInit {
   posts: post[] = [];
 
@@ -15,7 +16,6 @@ export class BlogfeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe((posts) => this.posts = posts);
-
   }
 
 }
