@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { post } from '../post';
+import { observable, of } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,22 @@ export class BlogfeedComponent implements OnInit {
   constructor(private postService:PostService) { }
 
   ngOnInit(): void {
-    this.postService.getPosts().subscribe((posts) => this.posts = posts);
+    this.postService.getPosts().subscribe((posts)=>{
+      let curPosts: post[] = []
+      for(let i =0; i <= posts.length-1;i++){
+        let curPost = posts[i];
+        let date = new Date(curPost.lastModified);
+        let content = curPost.content.split(" ").splice(0,200).join(" ");
+        let nPost = {
+            id: curPost.id,
+            title: curPost.title,
+            content: content,
+            lastModified:date.toLocaleDateString()
+        };
+        curPosts.push(nPost);
+      }
+      this.posts = curPosts;
+    }); 
   }
 
 }
