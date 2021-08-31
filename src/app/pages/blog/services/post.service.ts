@@ -7,7 +7,7 @@ import { post } from '../post';
   providedIn: 'root'
 })
 export class PostService {
-  private apiUrl = 'https://danielperezdev.com/api';
+  private apiUrl = 'https://dp-site-blog.herokuapp.com/api';
 
   constructor(private http:HttpClient) { }
 
