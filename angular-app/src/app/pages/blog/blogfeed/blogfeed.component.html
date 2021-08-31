@@ -1,15 +1,14 @@
 <div *ngFor="let post of posts" class="row mb-5">
-    <div class="col-lg-8 col-md-8 offset-md-2">
+    <div class="col-lg-8 col-md-12 offset-lg-2">
         <div class="blog-feed-post position-relative">
             <div class="row blog-title">
                 <div class="col-lg-10">
                     <h1>{{post.title}}</h1>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 text-end">
                     <p>{{post.lastModified}}</p>
                 </div>
             </div>
-
             <p class="preview-text" [innerHTML]="post.content"></p>
             <div>
                 <a type="button" class="btn btn-md btn-outline-primary position-absolute bottom-0 end-0 m-3">Read More</a>
