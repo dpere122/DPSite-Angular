@@ -14,17 +14,19 @@ export class BlogfeedComponent implements OnInit {
 
   constructor(private postService:PostService) { }
 
+  // i need to find a way to make this simpler
+  // simply change data outputted from an observable
   ngOnInit(): void {
     this.postService.getPosts().subscribe((posts)=>{
       let curPosts: post[] = []
       for(let i =0; i <= posts.length-1;i++){
         let curPost = posts[i];
         let date = new Date(curPost.lastModified);
-        let content = curPost.content.split(" ").splice(0,300).join(" ");
+        let content = curPost.content.split(" ").splice(0,300).join(" " );
         let nPost = {
             id: curPost.id,
             title: curPost.title,
-            content: curPost.content,
+            content: content,
             lastModified:date.toLocaleDateString()
         };
         curPosts.push(nPost);

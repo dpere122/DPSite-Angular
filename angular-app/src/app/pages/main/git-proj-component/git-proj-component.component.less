@@ -1,8 +1,9 @@
+@import '../../../../styles.less';
 .project-box {
     height: 300px;
     max-width: 400px;
     word-wrap: break-word;
-    background-color: #033d5a;
+    background-color: @baseDark;
     padding: 10px;
     text-align: left;
     border: 2px solid black;
@@ -10,16 +11,21 @@
 .project-box:hover {
     transition-duration: 0.2s;
     transform: scale(1.1);
-    background-color: #044d72;
+    // background-color: #03263A;
+
 }
 .project-desc {
-    border: 2px solid grey;
+    border: 2px solid @baseDark;
     border-style: groove;
     height: 85%;
-    background-color: #03293b;
+    background-color: @baseLight;
     padding: 5px;
+    color: white;
 }
 a{
     text-decoration: none;
-    color: #8d99ae;
+    color: white;
+}
+a:hover{
+    color: @highlight;
 }

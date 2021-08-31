@@ -1,20 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
-
+@desktop-big:   ~"only screen and (min-width: 1201px)";
+@desktop-normal:    ~"only screen and (min-width: 1025px) and (max-width: 1200px)";
+@laptop:     ~"only screen and (min-width: 769px) and (max-width: 1024px)";
+@tablet:     ~"only screen and (min-width: 481px) and (max-width: 768px)";
+@phone:     ~"only screen and (min-width: 320px) and (max-width: 480px)";
+@highlight: #FFB703;
+@highlightDark: #FB8500;
+@baseLight: #063E56;
+@baseColor: #023047;
+@baseDark: #03263A;
 @font-face {
     font-family: 'expressway';
     src: url('/assets/fonts/expressway.ttf') format('truetype');
 
   }
 body{
-    background-color: #022030;
-    color: #8d99ae;
+    // background-color: #022030;
+    // color: #8d99ae;
+    color: white;
+    background-color: @baseColor;
     font-family: expressway,Helvetica,sans-serif,Arial;
 }
+.highlight{
+  // color:  darkcyan;
+  color:  @highlight;
+}
+.big-title{
+  font-size: 4em;
+  // color: white;
+  color: white;
+}
 .btn-outline-primary{
-  border: 2px solid darkcyan;
-  color: cyan;
+  // border: 2px solid darkcyan;
+  // color: cyan;
+  border: 2px solid @highlightDark;
+  color: white;
 }
 .btn-outline-primary:hover{
-  background-color: darkcyan;
-  border: 2px solid darkcyan;
+  // background-color: darkcyan;
+  // border: 2px solid darkcyan;
+  background-color: @highlightDark;
+
+  border: 2px solid @highlightDark;
+}
+//Javscript added css has to be in the global class or it wont be found
+.picture-bg{
+  background: rgb(6,62,86);
+  background: radial-gradient(circle, rgba(6,62,86,1) 0%, rgba(3,38,58,1) 55%, rgba(3,38,58,1) 100%);
+  
+  border-radius: 30px;
+  
 }
