@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import {NgDompurifyModule} from '@tinkoff/ng-dompurify';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
@@ -22,7 +23,8 @@ import { BlogfeedComponent } from './pages/blog/blogfeed/blogfeed.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgDompurifyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

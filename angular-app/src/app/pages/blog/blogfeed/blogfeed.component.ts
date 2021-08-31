@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { PostService } from '../services/post.service';
 import { post } from '../post';
-import { observable, of } from 'rxjs';
 
 
 @Component({
@@ -25,7 +24,7 @@ export class BlogfeedComponent implements OnInit {
         let nPost = {
             id: curPost.id,
             title: curPost.title,
-            content: content,
+            content: curPost.content,
             lastModified:date.toLocaleDateString()
         };
         curPosts.push(nPost);

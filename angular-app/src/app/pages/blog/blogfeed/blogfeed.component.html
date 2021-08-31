@@ -9,7 +9,7 @@
                     <p>{{post.lastModified}}</p>
                 </div>
             </div>
-            <p class="preview-text" [innerHTML]="post.content"></p>
+            <p class="preview-text" [innerHTML]="post.content | dompurify"></p>
             <div>
                 <a type="button" class="btn btn-md btn-outline-primary position-absolute bottom-0 end-0 m-3">Read More</a>
             </div>
