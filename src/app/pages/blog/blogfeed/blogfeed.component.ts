@@ -22,7 +22,7 @@ export class BlogfeedComponent implements OnInit {
       for(let i =0; i <= posts.length-1;i++){
         let curPost = posts[i];
         let date = new Date(curPost.lastModified);
-        let content = curPost.content.split(" ").splice(0,100).join(" " );
+        let content = curPost.content.split(" ").splice(0,120).join(" " );
         let nPost = {
             id: curPost.id,
             title: curPost.title,
