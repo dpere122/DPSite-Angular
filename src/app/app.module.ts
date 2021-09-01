@@ -11,6 +11,7 @@ import { GitProjComponentComponent } from './pages/main/git-proj-component/git-p
 import { HttpClientModule } from '@angular/common/http';
 import { BlogfeedComponent } from './pages/blog/blogfeed/blogfeed.component';
 import { BlogpostComponent } from './pages/blog/blogpost/blogpost.component';
+import { EditorComponent } from './pages/blog/editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BlogpostComponent } from './pages/blog/blogpost/blogpost.component';
     BlogComponent,
     GitProjComponentComponent,
     BlogfeedComponent,
-    BlogpostComponent
+    BlogpostComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
