@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit,ViewEncapsulation  } from '@angular/core';
 import { FormControl , FormGroup} from "@angular/forms";
 import { Editor ,Toolbar,Validators } from 'ngx-editor';
+import { rawPost } from '../rawPost';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-editor',
@@ -24,11 +26,15 @@ export class EditorComponent implements OnInit,OnDestroy {
     titleContent: new FormControl('', Validators.required()),
     editorContent: new FormControl('', Validators.required()),
   });
-  constructor() { }
+  constructor(private postService:PostService) { }
   
   onSubmit(){
-    console.log(this.form.get("titleContent")?.value);
-    console.log(this.form.get("editorContent")?.value);
+    let nPost:rawPost = {
+      title:this.form.get("titleContent")?.value,
+      content:this.form.get("editorContent")?.value
+    }
+    console.log(nPost);
+    this.postService.newPost(nPost);
   }
 
   ngOnInit(): void {
