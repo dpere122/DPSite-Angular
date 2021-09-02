@@ -1,1 +1,15 @@
-<p>editor works!</p>
+<div class="container editor">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Blog Editor</h1>
+        </div>
+    </div>
+    <form [formGroup]="form">
+        <div class="NgxEditor__Wrapper">
+            <input type="text" formControlName="titleContent" id="titleContent" class="post-title">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+            <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
+        </div>
+        <button (click)="onSubmit()">Submit</button>
+    </form>
+</div>
