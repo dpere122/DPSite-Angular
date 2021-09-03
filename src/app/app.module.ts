@@ -19,9 +19,9 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
 import { AuthInterceptor } from './AuthInterceptor';
 
 const config = {
-  clientId: '${CLIENT_ID}',
-  issuer: '${ISSUER}',
-  redirectUri: '${REDIRECT_URI}',
+  clientId: process.env.CLIENT_ID,
+  issuer: process.env.ISSUER,
+  redirectUri: process.env.REDIRECT_URI,
   scopes: ['openid', 'profile', 'email'],
   pkce: true
 };
