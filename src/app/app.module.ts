@@ -6,7 +6,7 @@ import {NgDompurifyModule} from '@tinkoff/ng-dompurify';
 import { NgxEditorModule } from 'ngx-editor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {OKTA_CONFIG,OktaAuthModule} from '@okta/okta-angular';
-import { env } from 'process';
+import { environment } from 'src/environments/environment.prod';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
@@ -20,9 +20,9 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
 import { AuthInterceptor } from './AuthInterceptor';
 
 const config = {
-  clientId: env.clientId,
-  issuer: env.issuerID,
-  redirectUri: env.redirectURI,
+  clientId: environment.clientID,
+  issuer: environment.issuerID,
+  redirectUri: environment.redirectURI,
   scopes: ['openid', 'profile', 'email'],
   pkce: true
 };
