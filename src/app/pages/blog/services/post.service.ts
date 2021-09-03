@@ -9,8 +9,8 @@ import { OktaAuthService } from '@okta/okta-angular';
   providedIn: 'root'
 })
 export class PostService {
-  // private apiUrl = 'https://dp-site-blog.herokuapp.com/api';
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'https://dp-site-blog.herokuapp.com/api';
+  // private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http:HttpClient,private oktaAuth:OktaAuthService) { }
 
