@@ -17,11 +17,12 @@ import { BlogpostComponent } from './pages/blog/blogpost/blogpost.component';
 import { EditorComponent } from './pages/blog/editor/editor.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { AuthInterceptor } from './AuthInterceptor';
+import { environment } from 'src/environments/environment.prod';
 
 const config = {
-  clientId: process.env.CLIENT_ID,
-  issuer: process.env.ISSUER,
-  redirectUri: process.env.REDIRECT_URI,
+  clientId: environment.clientID,
+  issuer: environment.issuerID,
+  redirectUri: environment.redirectURI,
   scopes: ['openid', 'profile', 'email'],
   pkce: true
 };
