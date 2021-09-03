@@ -10,6 +10,48 @@
             <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
             <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
         </div>
-        <button (click)="onSubmit()">Submit</button>
+        <button class="btn btn-success mt-3 big-fucking-button" (click)="onSubmit()">Submit</button>
     </form>
+    <div class="row">
+        <div class="col"><button class="btn btn-lg btn-warning mt-3 big-fucking-button" (click)="loadPosts()" data-bs-toggle="modal" data-bs-target="#editModal">Edit Posts</button></div>
+        <div [hidden]="!editMode" class="col"><button (click)="stopEdit()" class="btn btn-lg btn-danger mt-3 big-fucking-button">Cancel Edit</button></div>
+        <div class="col"><button class="btn btn-lg btn-secondary mt-3 big-fucking-button" routerLink="/Blog-page">Back to Blog</button></div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Posts</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="post-edit-table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr *ngFor="let post of posts">
+                            <td>
+                                {{post.id}}
+                            </td>
+                            <td>
+                                {{post.title}}
+                            </td>
+                            <td>
+                                <button type="button" (click)="startEdit(post)" class="btn btn-warning btn-xs m-1" data-bs-dismiss="modal">Edit</button>
+                                <button type="button" (click)="deletePost(post.id)" class="btn btn-danger btn-xs m-1">Delete</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="m-5">EDIT MODE: {{editMode}}</h3>
+    <h3 class="m-5" [hidden]="!editMode">Post {{curEditPost.id}}: {{curEditPost.title}}</h3>
 </div>

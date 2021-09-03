@@ -3,6 +3,7 @@ import { FormControl , FormGroup} from "@angular/forms";
 import { Editor ,Toolbar,Validators } from 'ngx-editor';
 import { rawPost } from '../rawPost';
 import { PostService } from '../services/post.service';
+import { post } from '../post';
 
 @Component({
   selector: 'app-editor',
@@ -11,6 +12,8 @@ import { PostService } from '../services/post.service';
   encapsulation: ViewEncapsulation.None
 })
 export class EditorComponent implements OnInit,OnDestroy {
+  posts: post[] = [];
+  editMode: boolean = false;
   editor = new Editor;
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -26,6 +29,12 @@ export class EditorComponent implements OnInit,OnDestroy {
     titleContent: new FormControl('', Validators.required()),
     editorContent: new FormControl('', Validators.required()),
   });
+  curEditPost : post={
+    id: -1,
+    title : "",
+    content: "",
+    lastModified: "",
+};
   constructor(private postService:PostService) { }
   
   onSubmit(){
@@ -33,10 +42,45 @@ export class EditorComponent implements OnInit,OnDestroy {
       title:this.form.get("titleContent")?.value,
       content:this.form.get("editorContent")?.value
     }
-    console.log(nPost);
-    this.postService.newPost(nPost);
+    if(!this.editMode){
+      this.postService.newPost(nPost);
+    }else{
+      // PUT request functionionality
+      this.postService.deletePost(this.curEditPost.id);
+    }
+    this.clearText();
   }
-
+  loadPosts(){
+    this.postService.getPosts().subscribe((posts)=>this.posts = posts);
+  }
+  startEdit(post:post){
+    this.editMode = true;
+    this.curEditPost = post;
+    this.form.get("titleContent")?.setValue(this.curEditPost.title);
+    this.form.get("editorContent")?.setValue(this.curEditPost.content);
+  }
+  stopEdit(){
+    this.editMode = false;
+    this.curEditPost = {
+      id: -1,
+      title : "",
+      content: "",
+      lastModified: "",
+    };
+    this.clearText();
+  }
+  deletePost(id:number){
+    this.postService.deletePost(id);
+    for(let i = 0; i< this.posts.length;i++){
+      if(this.posts[i].id == id){
+        this.posts.splice(i,1);
+      }
+    }
+  }
+  clearText(){
+    this.form.get("titleContent")?.setValue("");
+    this.form.get("editorContent")?.setValue("");
+  }
   ngOnInit(): void {
     this.editor = new Editor();
   }

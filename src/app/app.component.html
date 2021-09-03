@@ -21,6 +21,12 @@
                         <li class="nav-item">
                             <a class="nav-link" routerLink="Blog-page">Blog</a>
                         </li>
+                        <li *ngIf="isAuthenticated" class="nav-item">
+                            <p class="nav-link" (click)="logout()">ADMIN</p>
+                        </li>
+                        <li *ngIf="isAuthenticated" class="nav-item">
+                            <a class="nav-link" routerLink="Blog-page/editor">Editor</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -28,5 +34,4 @@
     </div>
 
     <router-outlet></router-outlet>
-
 </div>

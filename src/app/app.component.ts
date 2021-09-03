@@ -1,5 +1,7 @@
 import { Component,HostListener } from '@angular/core';
-
+import { OktaAuthService } from '@okta/okta-angular';
+import { Router,NavigationEnd, ActivatedRoute, RouterEvent } from '@angular/router';
+import {filter} from 'rxjs/operators'
 import{
   trigger,
   state,
@@ -29,8 +31,33 @@ import{
   ]
 })
 export class AppComponent {
+  isAuthenticated: boolean|undefined;
   show = true;
-  constructor (){}
+  constructor (public oktaAuth:OktaAuthService,private router:Router){
+    router.events.pipe(
+      filter((e): e is RouterEvent => e instanceof RouterEvent)
+   ).subscribe((e: RouterEvent) => {
+     if(e.url == "/login" ){
+      this.login();
+     }
+     
+   });
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean) =>this.isAuthenticated = isAuthenticated
+      );
+      
+  }
+  async ngOnInit(){
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+  }
+  login(){
+    this.oktaAuth.signInWithRedirect({
+      originalUri:'/'
+    });
+  }
+  logout(){
+    this.oktaAuth.signOut();
+  }
 
   get stateName(){
     return this.show ? 'max' :'min';

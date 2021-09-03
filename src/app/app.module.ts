@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import {NgDompurifyModule} from '@tinkoff/ng-dompurify';
-import { NgxEditorModule,schema } from 'ngx-editor';
+import { NgxEditorModule } from 'ngx-editor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {OKTA_CONFIG,OktaAuthModule} from '@okta/okta-angular';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
@@ -14,6 +15,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BlogfeedComponent } from './pages/blog/blogfeed/blogfeed.component';
 import { BlogpostComponent } from './pages/blog/blogpost/blogpost.component';
 import { EditorComponent } from './pages/blog/editor/editor.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+
+// const config = {
+//   clientId: '${clientId}',
+//   issuer: '${issuer},
+//   redirectUri: '${redirectURI}',
+//   scopes: ['openid', 'profile', 'email'],
+//   pkce: true
+// };
 
 @NgModule({
   declarations: [
@@ -23,7 +33,8 @@ import { EditorComponent } from './pages/blog/editor/editor.component';
     GitProjComponentComponent,
     BlogfeedComponent,
     BlogpostComponent,
-    EditorComponent
+    EditorComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +42,7 @@ import { EditorComponent } from './pages/blog/editor/editor.component';
     AppRoutingModule,
     HttpClientModule,
     NgDompurifyModule,
+    OktaAuthModule,
     FormsModule,
     ReactiveFormsModule,
     NgxEditorModule.forRoot({
@@ -70,7 +82,9 @@ import { EditorComponent } from './pages/blog/editor/editor.component';
     })
 
   ],
-  providers: [],
+  providers: [
+    {provide:OKTA_CONFIG,useValue:config},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
