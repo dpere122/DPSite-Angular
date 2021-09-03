@@ -10,7 +10,8 @@
             <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
             <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
         </div>
-        <button class="btn btn-success mt-3 big-fucking-button" (click)="onSubmit()">Submit</button>
+        <button *ngIf="!editMode" class="btn btn-success mt-3 big-fucking-button" (click)="onSubmit()">Submit</button>
+        <button *ngIf="editMode" class="btn btn-success mt-3 big-fucking-button" (click)="onSubmit()">Confirm Edit</button>
     </form>
     <div class="row">
         <div class="col"><button class="btn btn-lg btn-warning mt-3 big-fucking-button" (click)="loadPosts()" data-bs-toggle="modal" data-bs-target="#editModal">Edit Posts</button></div>

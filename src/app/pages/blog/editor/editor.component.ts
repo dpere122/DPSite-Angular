@@ -44,11 +44,13 @@ export class EditorComponent implements OnInit,OnDestroy {
     }
     if(!this.editMode){
       this.postService.newPost(nPost);
+      this.clearText();
     }else{
       // PUT request functionionality
-      this.postService.deletePost(this.curEditPost.id);
+      this.postService.editPost(this.curEditPost.id,this.getCurPost());
+      this.stopEdit();
     }
-    this.clearText();
+    
   }
   loadPosts(){
     this.postService.getPosts().subscribe((posts)=>this.posts = posts);
@@ -76,6 +78,13 @@ export class EditorComponent implements OnInit,OnDestroy {
         this.posts.splice(i,1);
       }
     }
+  }
+  getCurPost(){
+    let nPost:rawPost={
+      title: this.form.get("titleContent")?.value,
+      content: this.form.get("editorContent")?.value
+    }
+    return nPost;
   }
   clearText(){
     this.form.get("titleContent")?.setValue("");
