@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-blog',
@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog.component.less']
 })
 export class BlogComponent implements OnInit {
-
   constructor() { }
-
-  ngOnInit(): void {
+  async ngOnInit() {
   }
 
 }
