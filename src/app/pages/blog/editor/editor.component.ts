@@ -15,6 +15,11 @@ export class EditorComponent implements OnInit,OnDestroy {
   posts: post[] = [];
   editMode: boolean = false;
   editor = new Editor;
+  savedPost: rawPost = {
+    title:"",
+    content:""
+  };
+  isSaved:boolean = false;
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -58,8 +63,7 @@ export class EditorComponent implements OnInit,OnDestroy {
   startEdit(post:post){
     this.editMode = true;
     this.curEditPost = post;
-    this.form.get("titleContent")?.setValue(this.curEditPost.title);
-    this.form.get("editorContent")?.setValue(this.curEditPost.content);
+    this.setData(this.curEditPost.title,this.curEditPost.content,undefined);
   }
   stopEdit(){
     this.editMode = false;
@@ -79,6 +83,16 @@ export class EditorComponent implements OnInit,OnDestroy {
       }
     }
   }
+  setData(title?:string,content?:string,nPost?:rawPost){
+    if(nPost != undefined){
+      this.form.get("titleContent")?.setValue(nPost.title);
+      this.form.get("editorContent")?.setValue(nPost.content);
+    }
+    else{
+      this.form.get("titleContent")?.setValue(title);
+      this.form.get("editorContent")?.setValue(content);
+    }
+  }
   getCurPost(){
     let nPost:rawPost={
       title: this.form.get("titleContent")?.value,
@@ -90,10 +104,64 @@ export class EditorComponent implements OnInit,OnDestroy {
     this.form.get("titleContent")?.setValue("");
     this.form.get("editorContent")?.setValue("");
   }
+  savePost(){
+    if(!('savedPost' in localStorage)){
+      this.setLocalStorage();
+    }else{
+      let confirmDialog= confirm("Are you sure you want to overwrite saved data");
+      if(confirmDialog == true){
+        this.setLocalStorage();
+      }
+    }
+    
+  }
+  loadPost(){
+    if('savedPost' in localStorage){
+      let nPost:rawPost = this.getLocalStorage();
+      this.setData("","",nPost);
+    }else{
+      console.warn("Nothing is saved in localStorage");
+    }
+  }
+
+
+  clearSavedPost(){
+    let confirmDialog = confirm("Are you sure you want to delete Saved Post");
+    if(confirmDialog == true){
+      localStorage.removeItem('savedPost');
+      this.savedPost.title = "";
+      this.savedPost.content = "";
+      this.isSaved = false;
+    }
+
+  }
+
+
+  setLocalStorage(){
+    this.savedPost = this.getCurPost();
+    if(this.getCurPost().title == ""){
+      alert("Please Enter a title to confirm your saved post to storage");
+    }else{
+      this.isSaved = true;
+      localStorage.setItem('savedPost',JSON.stringify(this.getCurPost()));      
+    }
+
+  }
+  getLocalStorage(){
+    return JSON.parse(localStorage.getItem('savedPost') || '{}');
+  }
   ngOnInit(): void {
     this.editor = new Editor();
+    if('savedPost' in localStorage){
+      this.savedPost = this.getLocalStorage();
+      this.isSaved = true;
+    }
+    else{
+      this.isSaved = false;
+    }
   }
   ngOnDestroy(): void {
     this.editor!.destroy();
   }
+  
 }

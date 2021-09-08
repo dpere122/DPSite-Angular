@@ -18,6 +18,11 @@
         <div [hidden]="!editMode" class="col"><button (click)="stopEdit()" class="btn btn-lg btn-danger mt-3 big-fucking-button">Cancel Edit</button></div>
         <div class="col"><button class="btn btn-lg btn-secondary mt-3 big-fucking-button" routerLink="/Blog-page">Back to Blog</button></div>
     </div>
+    <div class="row">
+        <div class="col"><button (click)="savePost()" class="btn btn-lg btn-light big-fucking-button mt-3">Save Post to Local Storage</button></div>
+        <div class="col" [hidden]="!isSaved"><button (click)="loadPost()" class="btn btn-lg btn-info big-fucking-button mt-3">Load Saved Post</button></div>
+        <div class="col" [hidden]="!isSaved"><button (click)="clearSavedPost()" class="btn btn-lg btn-danger big-fucking-button mt-3">Clear Saved Post</button></div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -55,4 +60,7 @@
     </div>
     <h3 class="m-5">EDIT MODE: {{editMode}}</h3>
     <h3 class="m-5" [hidden]="!editMode">Post {{curEditPost.id}}: {{curEditPost.title}}</h3>
+    <h3 class="m-5" [hidden]="!isSaved">Saved: {{savedPost.title}}</h3>
+
+
 </div>
