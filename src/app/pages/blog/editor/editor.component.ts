@@ -75,6 +75,7 @@ export class EditorComponent implements OnInit,OnDestroy {
     };
     this.clearText();
   }
+  // Make a confirm menu for delete button
   deletePost(id:number){
     this.postService.deletePost(id);
     for(let i = 0; i< this.posts.length;i++){
