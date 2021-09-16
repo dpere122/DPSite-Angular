@@ -77,10 +77,13 @@ export class EditorComponent implements OnInit,OnDestroy {
   }
   // Make a confirm menu for delete button
   deletePost(id:number){
-    this.postService.deletePost(id);
-    for(let i = 0; i< this.posts.length;i++){
-      if(this.posts[i].id == id){
-        this.posts.splice(i,1);
+    let confirmDialog = confirm("Are you sure you want to delete Post");
+    if(confirmDialog){
+      this.postService.deletePost(id);
+      for(let i = 0; i< this.posts.length;i++){
+        if(this.posts[i].id == id){
+          this.posts.splice(i,1);
+        }
       }
     }
   }

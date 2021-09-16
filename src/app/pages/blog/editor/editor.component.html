@@ -6,8 +6,10 @@
     </div>
     <form [formGroup]="form">
         <div class="NgxEditor__Wrapper">
-            <input type="text" formControlName="titleContent" id="titleContent" class="post-title">
-            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+            <input type="text" formControlName="titleContent" id="titleContent" class="post-title rounded">
+            <ngx-editor-floating-menu [editor]="editor">
+                <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+            </ngx-editor-floating-menu>
             <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
         </div>
         <button *ngIf="!editMode" class="btn btn-success mt-3 big-fucking-button" (click)="onSubmit()">Submit</button>
