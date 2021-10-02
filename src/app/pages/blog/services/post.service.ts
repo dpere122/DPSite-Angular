@@ -4,13 +4,13 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { post } from '../post';
 import { rawPost } from '../rawPost';
 import { OktaAuthService } from '@okta/okta-angular';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  private apiUrl = 'https://dp-site-blog.herokuapp.com/api';
-  // private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = environment.curAPI;
 
   constructor(private http:HttpClient,private oktaAuth:OktaAuthService) { }
 
