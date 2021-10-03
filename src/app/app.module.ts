@@ -18,6 +18,7 @@ import { BlogpostComponent } from './pages/blog/blogpost/blogpost.component';
 import { EditorComponent } from './pages/blog/editor/editor.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { AuthInterceptor } from './AuthInterceptor';
+import { StripHtmlPipePipe } from './pipes/strip-html-pipe.pipe';
 
 const config = {
   clientId: environment.clientID,
@@ -37,6 +38,7 @@ const config = {
     BlogpostComponent,
     EditorComponent,
     PagenotfoundComponent,
+    StripHtmlPipePipe,
   ],
   imports: [
     BrowserModule,

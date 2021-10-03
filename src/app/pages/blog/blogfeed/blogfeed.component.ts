@@ -2,7 +2,6 @@ import { Component, OnInit} from '@angular/core';
 import { PostService } from '../services/post.service';
 import { post } from '../post';
 
-
 @Component({
   selector: 'app-blogfeed',
   templateUrl: './blogfeed.component.html',
@@ -22,7 +21,7 @@ export class BlogfeedComponent implements OnInit {
       for(let i =0; i <= posts.length-1;i++){
         let curPost = posts[i];
         let date = new Date(curPost.lastModified);
-        let content = curPost.content.split(" ").splice(0,120).join(" " );
+        let content = curPost.content.split(" ").splice(0,170).join(" " );
         let nPost = {
             id: curPost.id,
             title: curPost.title,
