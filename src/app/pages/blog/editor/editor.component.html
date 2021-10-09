@@ -5,13 +5,16 @@
         </div>
     </div>
     <form [formGroup]="form">
-        <div class="NgxEditor__Wrapper">
+        <!-- Editor CODE START-->
+        <!-- <div class="NgxEditor__Wrapper">
             <input type="text" formControlName="titleContent" id="titleContent" class="post-title rounded">
-            <ngx-editor-floating-menu [editor]="editor">
-                <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-            </ngx-editor-floating-menu>
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [customMenuRef]="codeMenu"> </ngx-editor-menu>
             <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
-        </div>
+            <ng-template #codeMenu><app-editor-code-menu [editor]="editor"></app-editor-code-menu></ng-template>
+        </div> -->
+        <!-- Editor CODE END-->
+        <input type="text" formControlName="titleContent" id="titleContent" class="post-title rounded">
+        <quill-editor theme="snow" formControlName="editorContent"></quill-editor>
         <button *ngIf="!editMode" class="btn btn-success mt-3 big-fucking-button" (click)="onSubmit()">Submit</button>
         <button *ngIf="editMode" class="btn btn-success mt-3 big-fucking-button" (click)="onSubmit()">Confirm Edit</button>
     </form>

@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit,ViewEncapsulation  } from '@angular/core';
 import { FormControl , FormGroup} from "@angular/forms";
-import { Editor ,Toolbar,Validators } from 'ngx-editor';
 import { rawPost } from '../rawPost';
 import { PostService } from '../services/post.service';
 import { post } from '../post';
@@ -14,32 +13,24 @@ import { post } from '../post';
 export class EditorComponent implements OnInit,OnDestroy {
   posts: post[] = [];
   editMode: boolean = false;
-  editor = new Editor;
   savedPost: rawPost = {
     title:"",
     content:""
   };
   isSaved:boolean = false;
-  toolbar: Toolbar = [
-    ['bold', 'italic'],
-    ['underline', 'strike'],
-    ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
-    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link', 'image'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ];
+
   form = new FormGroup({
-    titleContent: new FormControl('', Validators.required()),
-    editorContent: new FormControl('', Validators.required()),
+    titleContent: new FormControl(''),
+    editorContent: new FormControl(''),
   });
   curEditPost : post={
     id: -1,
     title : "",
     content: "",
     lastModified: "",
+
 };
+
   constructor(private postService:PostService) { }
   
   onSubmit(){
@@ -155,7 +146,6 @@ export class EditorComponent implements OnInit,OnDestroy {
     return JSON.parse(localStorage.getItem('savedPost') || '{}');
   }
   ngOnInit(): void {
-    this.editor = new Editor();
     if('savedPost' in localStorage){
       this.savedPost = this.getLocalStorage();
       this.isSaved = true;
@@ -165,7 +155,7 @@ export class EditorComponent implements OnInit,OnDestroy {
     }
   }
   ngOnDestroy(): void {
-    this.editor!.destroy();
+
   }
   
 }

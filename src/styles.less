@@ -9,6 +9,9 @@
 @baseLight: #063E56;
 @baseColor: #023047;
 @baseDark: #03263A;
+@import '../node_modules/quill/dist/quill.core.css';
+@import '../node_modules/quill/dist/quill.bubble.css';
+@import "../node_modules/quill/dist/quill.snow.css";
 @font-face {
     font-family: 'expressway';
     src: url('/assets/fonts/expressway.ttf') format('truetype');
@@ -54,6 +57,10 @@ body{
   border-radius: 30px;
   
 }
-code{
-  white-space: pre-wrap;
+pre.ql-syntax {
+  background-color: darkslategray;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 10px;
 }

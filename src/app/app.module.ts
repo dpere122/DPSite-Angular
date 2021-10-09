@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import {NgDompurifyModule} from '@tinkoff/ng-dompurify';
-import { NgxEditorModule } from 'ngx-editor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {OKTA_CONFIG,OktaAuthModule} from '@okta/okta-angular';
 import { environment } from 'src/environments/environment.prod';
+import { QuillModule } from 'ngx-quill';
+
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
@@ -49,40 +50,11 @@ const config = {
     OktaAuthModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxEditorModule.forRoot({
-      locals: {
-        // menu
-        bold: 'Bold',
-        italic: 'Italic',
-        code: 'Code',
-        blockquote: 'Blockquote',
-        underline: 'Underline',
-        strike: 'Strike',
-        bullet_list: 'Bullet List',
-        ordered_list: 'Ordered List',
-        heading: 'Heading',
-        h1: 'Header 1',
-        h2: 'Header 2',
-        h3: 'Header 3',
-        h4: 'Header 4',
-        h5: 'Header 5',
-        h6: 'Header 6',
-        align_left: 'Left Align',
-        align_center: 'Center Align',
-        align_right: 'Right Align',
-        align_justify: 'Justify',
-        text_color: 'Text Color',
-        background_color: 'Background Color',
-
-        // popups, forms, others...
-        url: 'URL',
-        text: 'Text',
-        openInNewTab: 'Open in new tab',
-        insert: 'Insert',
-        altText: 'Alt Text',
-        title: 'Title',
-        remove: 'Remove',
-      },
+    QuillModule.forRoot({
+      modules:{
+        syntax: true,
+        
+      }
     })
 
   ],
@@ -92,4 +64,5 @@ const config = {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+ }

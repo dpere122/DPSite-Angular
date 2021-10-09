@@ -11,7 +11,6 @@ import { post } from '../post';
 })
 export class BlogpostComponent implements OnInit {
   post: post|undefined;
-
   constructor(private route:ActivatedRoute,private postService:PostService) { }
 
   ngOnInit(): void {
@@ -22,11 +21,13 @@ export class BlogpostComponent implements OnInit {
     {
       let date = new Date(post.lastModified);
       let contentHTML = new DOMParser().parseFromString(post.content,"text/html");
+      
+      // get images
       let images = contentHTML.getElementsByTagName('img');
-
       for(let x= 0;x<images.length;x++){
         images[x].classList.add('img-fluid','picture-bg');
       }
+
       let curPost ={
         id:post.id,
         title: post.title,
